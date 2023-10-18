@@ -16,8 +16,16 @@
         <h2>Search Results:</h2>
         @if(count($recipes) > 0)
             <ul>
-                @foreach($recipes as $recipe)
+            @foreach($recipes as $recipe)
                     <li>{{ $recipe['recipe']['label'] }}</li>
+                    <img src="{{ $recipe['recipe']['image'] }}">
+                    
+                    <!--
+                    <li>{{ $recipe['recipe']['ingredientLines'][0] }}</li>
+                    <li>{{ $recipe['recipe']['ingredientLines'][1] }}</li>
+                    <li>{{ $recipe['recipe']['ingredientLines'][2] }}</li>
+                    -->
+                    
                 @endforeach
             </ul>
         @else
