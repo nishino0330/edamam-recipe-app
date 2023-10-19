@@ -8,9 +8,10 @@
     <form action="/search" method="GET">
         <label for="ingredients">Ingredients:</label>
         <input type="text" name="ingredients" id="ingredients">
-        
+        <!--
         <input type="checkbox" id="japanese" name="japanese" />
         <label for="japanese">japanese</label>
+        -->
         <button type="submit">Search</button>
     </form>
 
@@ -27,6 +28,8 @@
                     @foreach($recipe['recipe']['ingredientLines'] as $step)
                         <li>{{ $step }}</li>
                     @endforeach
+                    <p>カロリー：{{ $recipe['recipe']['calories'] }} kcal</p>
+                    <a href="{{ $recipe['recipe']['url'] }}" target="_blank">レシピを見る</a>
                 @endforeach
             </ul>
         @else
