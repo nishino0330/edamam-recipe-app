@@ -24,15 +24,23 @@ class RecipeController extends Controller
             "app_id" => env('APPLICATION_ID'),  // 環境変数からアプリケーションIDを取得
             "app_key" => env('APPLICATION_KEY'),  // 環境変数からアプリケーションキーを取得
             "from" => 0,  // 検索結果の開始位置
-            "to" => 5  // 検索結果の終了位置
+            "to" => 5,  // 検索結果の終了位置
+            // "cuisineType" => 'japanese or italian',
         ];
+
+        // 選択された料理タイプをクエリに追加
+        if ($request->has('cuisineType')) {
+            $selectedCuisines = $request->input('cuisineType');
+                $params["cuisineType"] = implode(' or ', $selectedCuisines);
+        }
 
         // Edamam APIにリクエストを送信
         $response = Http::get($url, $params);
 
         // レスポンスをJSON形式で取得
         $data = $response->json();
-
+        
+        // var_dump($data["hits"][0]["recipe"]["cuisineType"]);
         // dd($data);
 
         // 検索結果の料理をビューに渡す

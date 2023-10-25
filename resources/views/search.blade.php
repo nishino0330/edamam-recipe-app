@@ -8,10 +8,14 @@
     <form action="/search" method="GET">
         <label for="ingredients">Ingredients:</label>
         <input type="text" name="ingredients" id="ingredients">
-        <!--
-        <input type="checkbox" id="japanese" name="japanese" />
-        <label for="japanese">japanese</label>
-        -->
+        
+        <input type="checkbox" id="cuisineTypeJapanese" name="cuisineType[]" value="japanese" @if(in_array('japanese', request('cuisineType', []))) checked @endif />
+        <label for="cuisineTypeJapanese">Japanese</label>
+
+        <input type="checkbox" id="cuisineTypeItalian" name="cuisineType[]" value="italian" @if(in_array('italian', request('cuisineType', []))) checked @endif />
+        <label for="cuisineTypeItalian">Italian</label>
+
+
         <button type="submit">Search</button>
     </form>
 
