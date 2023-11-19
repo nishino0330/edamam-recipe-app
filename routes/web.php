@@ -19,4 +19,5 @@ Route::get('/', function () {
 });
 
 Route::get('/search', [RecipeController::class, 'search']);
-// Route::post('/search', [RecipeController::class, 'search']);
+
+Route::get('/send-message/{n}', [RecipeController::class, 'sendMessage'])->name('send-message');

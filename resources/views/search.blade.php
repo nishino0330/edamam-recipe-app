@@ -20,7 +20,7 @@
     </form>
 
     @if(isset($recipes))
-        <h2>Search Results:</h2>
+        <h2>Search Results</h2>
         @if(count($recipes) > 0)
             <ul>
                 @foreach($recipes as $recipe)
@@ -40,5 +40,29 @@
             <p>No recipes found.</p>
         @endif
     @endif
+
+    <button type="button" id="testMessageButton">ChatGPT</button>
+    <p id="testMessage"></p>
+
+    <script>
+    var chatGPTButton = document.getElementById('testMessageButton');
+
+    chatGPTButton.addEventListener('click', function() {
+        // console.log('Button clicked!');
+        const value = 0;
+        // fetchメソッドによるリクエスト
+        fetch('{{ route("send-message", ["n" => ":value"]) }}'.replace(':value', value))
+        
+            .then(response => response.json())
+            .then(data => {
+                // レスポンスのデータを取得し、表示
+                if (data.test) {
+                    console.log(data.test);
+                    document.getElementById('testMessage').innerText = data.test;
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    });
+    </script>
 </body>
 </html>
